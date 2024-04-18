@@ -1,18 +1,20 @@
 from deepface import DeepFace
-import cv2
+import cv2, os, time, uuid
 import matplotlib.pyplot as plt
 
-img1 = "data/yoshirandy.jpg"
-img2 = "data/randy.jpg"
+image_path = os.path.join('data', 'images')
+number_images = 30
 
-img1 = cv2.imread(img1)
-img2 = cv2.imread(img2)
+cap = cv2.VideoCapture(1)
+for imgnum in range(number_images):
+    print('Collection Image {}'.format(imgnum))
+    ret, frame = cap.read()
+    imgname = os.path.join(image_path,f'{str(uuid.uuid4())}.jpg')
+    cv2.imwrite(imgname, frame)
+    cv2.imshow('frame', frame)
+    time.sleep(0.5)
 
-plt.imshow(img1[:, :, ::-1])
-# plt.show()
-plt.imshow(img2[:, :, ::-1])
-# plt.show()
-
-
-result = DeepFace.verify(img1, img2)
-print(result)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+cap.release()
+cv2.destroyAllWindows()
