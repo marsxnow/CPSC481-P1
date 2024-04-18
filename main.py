@@ -2,8 +2,8 @@ from deepface import DeepFace
 import cv2
 import matplotlib.pyplot as plt
 
-img1 = "data/rax1.jpg"
-img2 = "data/randy3.jpg"
+img1 = "data/yoshirandy.jpg"
+img2 = "data/randy.jpg"
 
 img1 = cv2.imread(img1)
 img2 = cv2.imread(img2)
