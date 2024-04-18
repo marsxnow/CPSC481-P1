@@ -12,23 +12,25 @@ image_path = os.path.join('data', 'images')
 number_images = 30
 
 '''
-# this code is what collects the images from the webcam
-# remember to give permission to the webcam if you want to add more photos to the dataset
-# uncomment to collect images
+this code is what collects the images from the webcam
+remember to give permission to the webcam if you want to add more photos to the dataset
+uncomment to collect images
+'''
+# cap = cv2.VideoCapture(0)
+# for imgnum in range(number_images):
+#     print('Collection Image {}'.format(imgnum))
+#     ret, frame = cap.read()
+#     imgname = os.path.join(image_path,f'{str(uuid.uuid4())}.jpg')
+#     cv2.imwrite(imgname, frame)
+#     cv2.imshow('frame', frame)
+#     time.sleep(0.5)
 
-cap = cv2.VideoCapture(0)
-for imgnum in range(number_images):
-    print('Collection Image {}'.format(imgnum))
-    ret, frame = cap.read()
-    imgname = os.path.join(image_path,f'{str(uuid.uuid4())}.jpg')
-    cv2.imwrite(imgname, frame)
-    cv2.imshow('frame', frame)
-    time.sleep(0.5)
-
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-cap.release()
-cv2.destroyAllWindows()
+#     if cv2.waitKey(1) & 0xFF == ord('q'):
+#         break
+# cap.release()
+# cv2.destroyAllWindows()
+'''
+------------------------------------------------------------------------------------------
 '''
 
 # query system for available GPUs that are compatible with tensorflow
