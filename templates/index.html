@@ -1,7 +1,52 @@
 <!doctype html>
-<title>Upload new File</title>
-<h1>Upload new File</h1>
-<form action="/upload" method="post" enctype="multipart/form-data">
-  <input type="file" name="file" />
-  <input type="submit" value="Upload" />
-</form>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" initial-scale="1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>CPSC 481 P1</title>
+  </head>
+  <body class="bg-indigo-400 font-mono">
+    <nav class="bg-indigo-50 shadow-lg shadow-indigo-500/40">
+      <div class="mx-auto px-1 py-3">
+        <a class="text-lg font-semibold text-grey-950 lg:text-2xl pl-4" href="#"
+          >CPSC 481 P1</a
+        >
+      </div>
+    </nav>
+
+    <div class="py-4 pl-4">
+      <h2>Welcom to our project! Please upload and image.</h2>
+    </div>
+    <form
+      action="/upload"
+      method="post"
+      enctype="multipart/form-data"
+      class="p-4"
+    >
+      <label
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        for="file_input"
+        >Upload file</label
+      >
+      <input
+        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+        aria-describedby="file_input_help"
+        id="file_input"
+        type="file"
+        name="file"
+      />
+      <input
+        class="block w-full mt-4 text-sm font-semibold text-white bg-blue-500 border border-blue-500 rounded-lg cursor-pointer focus:outline-none"
+        type="submit"
+        value="Upload"
+      />
+      <p
+        class="mt-1 text-sm text-gray-500 dark:text-gray-300"
+        id="file_input_help"
+      >
+        SVG, PNG, JPG or GIF (MAX. 800x400px).
+      </p>
+    </form>
+  </body>
+</html>
