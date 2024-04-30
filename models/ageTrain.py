@@ -27,7 +27,7 @@ def get_patterns(images_dataframe):
     return patterns
 
 
-dataset = "datasets/archive/UTKface"
+dataset = "datasets/archive/myImg"
 df = pd.DataFrame(columns=["img", "age", "gender", "ethnicity"])
 
 for file_name in os.listdir(dataset):
@@ -113,7 +113,7 @@ train = model.fit(
     x=X,
     y=[y_gender, y_age],
     batch_size=32,
-    epochs=15,
+    epochs=100,
     shuffle=True,
     validation_split=0.2,
 )
