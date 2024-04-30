@@ -24,6 +24,7 @@
       enctype="multipart/form-data"
       class="p-4"
     >
+      <img id="output" />
       <label
         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         for="file_input"
@@ -35,6 +36,7 @@
         id="file_input"
         type="file"
         name="file"
+        onchange="loadFile(event)"
       />
       <input
         class="block w-64 mt-4 text-sm font-semibold text-white bg-blue-500 border border-blue-500 rounded-lg cursor-pointer focus:outline-none"
@@ -47,6 +49,15 @@
       >
         JPEG or JPG images only.
       </p>
+      <script>
+        var loadFile = function (event) {
+          var output = document.getElementById("output");
+          output.src = URL.createObjectURL(event.target.files[0]);
+          output.onload = function () {
+            URL.revokeObjectURL(output.src); // free memory
+          };
+        };
+      </script>
     </form>
   </body>
 </html>
