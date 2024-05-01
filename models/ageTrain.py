@@ -113,7 +113,7 @@ train = model.fit(
     x=X,
     y=[y_gender, y_age],
     batch_size=32,
-    epochs=100,
+    epochs=200,
     shuffle=True,
     validation_split=0.2,
 )
