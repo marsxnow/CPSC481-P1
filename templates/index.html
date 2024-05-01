@@ -6,7 +6,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>CPSC 481 P1</title>
   </head>
-  <body class="bg-indigo-400 font-mono">
+  <body class="bg-indigo-400 font-mono content-center">
     <nav class="bg-indigo-50 shadow-lg shadow-indigo-700/40">
       <div class="mx-auto px-1 py-3">
         <a class="text-lg font-semibold text-grey-950 lg:text-2xl pl-4" href="#"
@@ -14,50 +14,58 @@
         >
       </div>
     </nav>
-
-    <div class="py-4 pl-4">
-      <h2>Welcom to our project! Please upload and image.</h2>
+    <div class>
+      <div class="py-4 flex flex-row min-h-0 justify-center items-center">
+        <h2>Welcome to our project! Please upload and image.</h2>
+      </div>
+      <div class="flex flex-row min-h-0 justify-center items-center">
+        <form
+          action="/upload"
+          method="post"
+          enctype="multipart/form-data"
+          class="flex flex-col justify-center items-center"
+        >
+          <div class="justify-center items-center">
+            <img
+              class="shadow-md shadow-indigo-700 object-scale-down h-48 w-48 rounded-lg"
+              id="output"
+            />
+          </div>
+          <label
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            for="file_input"
+            >Upload file</label
+          >
+          <input
+            class="block w-64 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+            aria-describedby="file_input_help"
+            id="file_input"
+            type="file"
+            name="file"
+            onchange="loadFile(event)"
+          />
+          <input
+            class="block w-64 mt-4 text-sm font-semibold text-white bg-blue-500 border border-blue-500 rounded-lg cursor-pointer focus:outline-none"
+            type="submit"
+            value="Upload"
+          />
+          <p
+            class="mt-1 text-sm text-gray-500 dark:text-gray-300"
+            id="file_input_help"
+          >
+            JPEG or JPG images only.
+          </p>
+          <script>
+            var loadFile = function (event) {
+              var output = document.getElementById("output");
+              output.src = URL.createObjectURL(event.target.files[0]);
+              output.onload = function () {
+                URL.revokeObjectURL(output.src); // free memory
+              };
+            };
+          </script>
+        </form>
+      </div>
     </div>
-    <form
-      action="/upload"
-      method="post"
-      enctype="multipart/form-data"
-      class="p-4 justify-end"
-    >
-      <img class="shadow-md shadow-indigo-700 rounded-lg" id="output" />
-      <label
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        for="file_input"
-        >Upload file</label
-      >
-      <input
-        class="block w-64 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-        aria-describedby="file_input_help"
-        id="file_input"
-        type="file"
-        name="file"
-        onchange="loadFile(event)"
-      />
-      <input
-        class="block w-64 mt-4 text-sm font-semibold text-white bg-blue-500 border border-blue-500 rounded-lg cursor-pointer focus:outline-none"
-        type="submit"
-        value="Upload"
-      />
-      <p
-        class="mt-1 text-sm text-gray-500 dark:text-gray-300"
-        id="file_input_help"
-      >
-        JPEG or JPG images only.
-      </p>
-      <script>
-        var loadFile = function (event) {
-          var output = document.getElementById("output");
-          output.src = URL.createObjectURL(event.target.files[0]);
-          output.onload = function () {
-            URL.revokeObjectURL(output.src); // free memory
-          };
-        };
-      </script>
-    </form>
   </body>
 </html>
