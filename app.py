@@ -67,6 +67,7 @@ def predict(image):
     # Make prediction
     pred = model.predict(image[0].reshape(1, 128, 128, 1))
     # Format and return prediction
+    print(pred)
     gender_pred, age_pred = "%.f" % pred[0][0][0], "%.f" % pred[1][0][0]
     gender_pred = "Male" if gender_pred == "0" else "Female"
 

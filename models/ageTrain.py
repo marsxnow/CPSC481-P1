@@ -33,7 +33,6 @@ df = pd.DataFrame(columns=["img", "age", "gender", "ethnicity"])
 for file_name in os.listdir(dataset):
     img_path = os.path.join(dataset, file_name)
     age_gender_ethnicity = file_name.split("_")
-    # print(file_name)
     try:
         age, gender, ethnicity = (
             age_gender_ethnicity[0],
@@ -61,11 +60,12 @@ for file_name in os.listdir(dataset):
 
 # df.to_pickle("df_subset.pkl")
 
-# df = pd.read_pickle("df_subset.pkl")
+df = pd.read_pickle("df_subset.pkl")
 # df = df.sample(n=14400, random_state=42)
 
 X = get_patterns(df["img"])  # numpy array
 X = X / 255.0
+
 
 y_age = np.array(df["age"])
 y_gender = np.array(df["gender"])
@@ -101,9 +101,8 @@ output_2 = Dense(1, activation="relu", name="age_out")(dropout_2)
 
 # model = Model(inputs=[inputs], outputs=[output_1, output_2])
 # model.compile(loss=['binary_crossentropy', 'mae'], optimizer='adam', metrics=['accuracy', 'mae'])
-model = load_model("model.keras")
-# plot_model(model, to_file='model.png')
 
+model = load_model("model.keras")
 
 X = tf.convert_to_tensor(X, dtype=tf.float32)
 y_gender = tf.convert_to_tensor(y_gender, dtype=tf.float32)
@@ -113,7 +112,7 @@ train = model.fit(
     x=X,
     y=[y_gender, y_age],
     batch_size=32,
-    epochs=200,
+    epochs=10,
     shuffle=True,
     validation_split=0.2,
 )
